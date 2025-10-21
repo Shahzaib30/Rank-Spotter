@@ -278,10 +278,13 @@ def internal_error(error):
 # ==================== Main ====================
 
 if __name__ == '__main__':
-    port = 8080
+    import os
+
+    port = int(os.environ.get('PORT', 8080))  # Use Render's dynamic port if available
     logger.info(f"Starting Flask server on port {port}")
     app.run(
         host='0.0.0.0',
         port=port,
         debug=Config.DEBUG
     )
+
